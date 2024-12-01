@@ -1,0 +1,12 @@
+---
+apiVersions: apps/v1
+kind: Pod
+metadata:
+  name: web
+spec:
+  containers:
+  # image 구성 진행
+  - name: nginx
+    image: nginx
+    ports:
+    - containerPort: 80
