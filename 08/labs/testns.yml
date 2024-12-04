@@ -1,0 +1,5 @@
+# NameSpace 구성
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: testns
