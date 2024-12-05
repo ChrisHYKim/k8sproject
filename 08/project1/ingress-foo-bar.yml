@@ -1,0 +1,24 @@
+---
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: myingress1
+spec:
+  ingressClassName: nginx 
+  rules:
+  - http: 
+      paths: 
+      - pathType: Prefix
+        path: "/foo"
+        backend:
+          service:
+            name: foo-svc
+            port: 
+              number: 4200
+      - pathType: Prefix
+        path: "/bar"
+        backend:
+          service:
+            name: bar-svc
+            port: 
+              number: 8080
