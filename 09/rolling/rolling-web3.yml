@@ -1,0 +1,28 @@
+---
+# web3 Deployment (Pod x 3)
+# labels(app: web)   
+# 컨테이너 이미지: whatwant/node-web:2.0
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: rolling-web3
+  annotations:
+    kubernets.io/change-cause: version 3.0
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: web
+      version: stable
+  template:
+    metadata:
+      name: rolling-web3-pod
+      labels:
+        app: web
+        version: stable
+    spec:
+      containers:
+      - name: rolling-web3-container
+        image: whatwant/node-web:2.0
+        ports:
+        - containerPort: 8080
