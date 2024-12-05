@@ -1,0 +1,15 @@
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: pod-annotation
+  annotations:
+    builder: "BSC(jan4sc@hanmail.net)"
+    buildDate: "20220812"
+    imageRegistry: "doker.io/library"
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.14
+    ports:
+    - containerPort: 80
