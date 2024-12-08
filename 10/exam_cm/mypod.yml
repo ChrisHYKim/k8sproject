@@ -1,0 +1,19 @@
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: mysanta
+spec:
+  containers:
+  # 컨테이너 생성 밒 웹 페이지 빌드
+  - name: mysanta-container
+    image: nginx:1.15
+    volumeMounts:
+    - name: myweb
+      mountPath: /usr/share/nginx/html
+    ports:
+    - containerPort: 80
+  volumes:
+  - name: myweb
+    configMap:
+      name: myindex
