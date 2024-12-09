@@ -1,0 +1,17 @@
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: pv-volume
+spec:
+  nfs:
+    server: 192.168.10.15
+    path: /nas/k8s
+  # 용량은 5G 할당
+  capacity:
+    storage: 5Gi
+  # ReadWriteMany 지정
+  accessModes:
+  - ReadWriteMany
+  storageClassName: manual
+  persistentVolumeReclaimPolicy: Delete
