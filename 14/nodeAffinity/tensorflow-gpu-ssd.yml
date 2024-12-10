@@ -1,0 +1,28 @@
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: tensorflow-gpu
+spec:
+  containers:
+  - name: tensorflow
+    image: tensorflow/tensorflow:nightly-jupyter
+    ports:
+    - containerPort: 8888
+      protocol: TCP
+  affinity:
+    nodeAffinity:
+      # 엄격한 조건
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - {key: disktype, operator: Exists}
+      # 선호 조건, 가중치 10 반환
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 10
+        preference:
+          matchExpressions:
+            # gpu 가 true 일 때,
+            - {key: gpu, operator: In, values: ["true"]}
+            # disktype ssd 인 node 선택
+            - {key: disktype, operator: In, values: ["ssd"]}
