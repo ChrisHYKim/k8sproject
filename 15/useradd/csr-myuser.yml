@@ -5,7 +5,7 @@ metadata:
   name: myuser
 spec:
   # myuser.csr 있는 aes 값을 읽어온 후, base64 방식으로 decoding을 진행한다.
-  request: 'cert key data' 
+  request: ${{ secrets.myuser_crt }} 
   signerName: kubernetes.io/kube-apiserver-client
   expirationSeconds: 864000  
   usages:
