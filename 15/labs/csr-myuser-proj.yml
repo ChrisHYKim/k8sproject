@@ -1,0 +1,11 @@
+---
+kind: CertificateSigningRequest
+apiVersion: certificates.k8s.io/v1
+metadata:
+  name: app-manager
+spec:
+  request: 'secret-key' 
+  signerName: kubernetes.io/kube-apiserver-client
+  expirationSeconds: 86400
+  usages:
+  - client auth
